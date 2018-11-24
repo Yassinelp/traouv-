@@ -35,10 +35,9 @@ répondre à celle-ci :
 >- Titre
 >- Description
 >
->Concernant la mise en relation des internautes, je ne sais pas
->encore comment procéder... Je vous laisse donc me faire une
->proposition simple et sécuriée pour permettre aux internautes de
->se contacter.
+>Concernant la mise en relation des internautes, il pourront commenter les
+>différentes annonces postées mais également s'envoyer des messages privés
+>afin de pouvoir valider qu'il s'agit bien du propriétaire d'un objet.
 
 ## Fichiers à rendre
 1. Liste des étapes pour la réalisation du projet
