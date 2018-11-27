@@ -59,7 +59,7 @@ class TraobjectFixtures extends Fixture implements DependentFixtureInterface
 
         $traobject = new Traobject();
         $traobject->setTitle("Poupée blonde")
-            ->setPicture(null)
+            ->setPicture("blond-doll.jpg")
             ->setAddress(null)
             ->setCity("Brest")
             ->setCounty($this->getReference("county-2"))
@@ -72,8 +72,22 @@ class TraobjectFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($traobject);
 
         $traobject = new Traobject();
-        $traobject->setTitle("Gants en cuir")
+        $traobject->setTitle("Jeu de carte Pokémon")
             ->setPicture(null)
+            ->setAddress(null)
+            ->setCity("Quimper")
+            ->setCounty($this->getReference("county-2"))
+            ->setDescription("Jeu de carte Pokémon retrouvé dans le jardin public près de la Mairie de Quimper")
+            ->setEventAt(new \DateTime("2018-11-29"))
+            ->setDateEnd(null)
+            ->setCategory($this->getReference("categorie-jouet"))
+            ->setUser($this->getReference("user-2"))
+            ->setState($this->getReference("trouvé"));
+        $manager->persist($traobject);
+
+        $traobject = new Traobject();
+        $traobject->setTitle("Gants en cuir")
+            ->setPicture("gant-cuir.jpg")
             ->setAddress(null)
             ->setCity("Bruz")
             ->setCounty($this->getReference("county-3"))

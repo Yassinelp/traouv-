@@ -35,57 +35,32 @@ class County
      */
     private $zipcode;
 
-    /**
-     * @return int
-     */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return County
-     */
-    public function setId(int $id): County
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLabel(): string
+    public function getLabel(): ?string
     {
         return $this->label;
     }
 
-    /**
-     * @param string $label
-     * @return County
-     */
-    public function setLabel(string $label): County
+    public function setLabel(string $label): self
     {
         $this->label = $label;
+
         return $this;
     }
 
-    /**
-     * @return int
-     */
-    public function getZipcode(): int
+    public function getZipcode(): ?int
     {
         return $this->zipcode;
     }
 
-    /**
-     * @param int $zipcode
-     * @return County
-     */
-    public function setZipcode(int $zipcode): County
+    public function setZipcode(int $zipcode): self
     {
         $this->zipcode = $zipcode;
+
         return $this;
     }
 

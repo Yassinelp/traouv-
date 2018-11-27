@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\State;
+use App\Entity\Traobject;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends BaseController
@@ -11,8 +13,15 @@ class DefaultController extends BaseController
      */
     public function index()
     {
+        $stateFound = $this->getDoctrine()->getRepository(State::class)->findOneBy(["label" => State::FOUND]);
+        $traobjectsFound = $this->getDoctrine()->getRepository(Traobject::class)->findLast($stateFound, 4);
+
+        $stateLost = $this->getDoctrine()->getRepository(State::class)->findOneBy(["label"=> State::LOST]);
+        $traobjectsLost = $this->getDoctrine()->getRepository(Traobject::class)->findLast($stateLost, 4);
+
         return $this->render('default/homepage.html.twig', [
-            'controller_name' => 'DefaultController',
+            'traobjectsFound' => $traobjectsFound,
+            'traobjectsLost' => $traobjectsLost
         ]);
     }
 }

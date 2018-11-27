@@ -42,75 +42,44 @@ class Category
      */
     private $color;
 
-    /**
-     * @return int
-     */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return Category
-     */
-    public function setId(int $id): Category
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLabel(): string
+    public function getLabel(): ?string
     {
         return $this->label;
     }
 
-    /**
-     * @param string $label
-     * @return Category
-     */
-    public function setLabel(string $label): Category
+    public function setLabel(string $label): self
     {
         $this->label = $label;
+
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getIcon(): string
+    public function getIcon(): ?string
     {
         return $this->icon;
     }
 
-    /**
-     * @param string $icon
-     * @return Category
-     */
-    public function setIcon(string $icon): Category
+    public function setIcon(string $icon): self
     {
         $this->icon = $icon;
+
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getColor(): string
+    public function getColor(): ?string
     {
         return $this->color;
     }
 
-    /**
-     * @param string $color
-     * @return Category
-     */
-    public function setColor(string $color): Category
+    public function setColor(string $color): self
     {
         $this->color = $color;
+
         return $this;
     }
 

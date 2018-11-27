@@ -55,93 +55,56 @@ class Message
      */
     private $userTo;
 
-    /**
-     * @return int
-     */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return Message
-     */
-    public function setId(int $id): Message
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getContent(): string
+    public function getContent(): ?string
     {
         return $this->content;
     }
 
-    /**
-     * @param string $content
-     * @return Message
-     */
-    public function setContent(string $content): Message
+    public function setContent(string $content): self
     {
         $this->content = $content;
+
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getCreatedAt(): string
+    public function getCreatedAt(): ?string
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param string $createdAt
-     * @return Message
-     */
-    public function setCreatedAt(string $createdAt): Message
+    public function setCreatedAt(string $createdAt): self
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
-    /**
-     * @return \User
-     */
-    public function getUserForm(): \User
+    public function getUserForm(): ?User
     {
         return $this->userForm;
     }
 
-    /**
-     * @param \User $userForm
-     * @return Message
-     */
-    public function setUserForm(\User $userForm): Message
+    public function setUserForm(?User $userForm): self
     {
         $this->userForm = $userForm;
+
         return $this;
     }
 
-    /**
-     * @return \User
-     */
-    public function getUserTo(): \User
+    public function getUserTo(): ?User
     {
         return $this->userTo;
     }
 
-    /**
-     * @param \User $userTo
-     * @return Message
-     */
-    public function setUserTo(\User $userTo): Message
+    public function setUserTo(?User $userTo): self
     {
         $this->userTo = $userTo;
+
         return $this;
     }
 

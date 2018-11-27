@@ -55,94 +55,58 @@ class Comment
      */
     private $user;
 
-    /**
-     * @return int
-     */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return Comment
-     */
-    public function setId(int $id): Comment
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getContent(): string
+    public function getContent(): ?string
     {
         return $this->content;
     }
 
-    /**
-     * @param string $content
-     * @return Comment
-     */
-    public function setContent(string $content): Comment
+    public function setContent(string $content): self
     {
         $this->content = $content;
+
         return $this;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param \DateTime $createdAt
-     * @return Comment
-     */
-    public function setCreatedAt(\DateTime $createdAt): Comment
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
-    /**
-     * @return \Traobject
-     */
-    public function getTraobject(): \Traobject
+    public function getTraobject(): ?Traobject
     {
         return $this->traobject;
     }
 
-    /**
-     * @param \Traobject $traobject
-     * @return Comment
-     */
-    public function setTraobject(\Traobject $traobject): Comment
+    public function setTraobject(?Traobject $traobject): self
     {
         $this->traobject = $traobject;
+
         return $this;
     }
 
-    /**
-     * @return \User
-     */
-    public function getUser(): \User
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    /**
-     * @param \User $user
-     * @return Comment
-     */
-    public function setUser(\User $user): Comment
+    public function setUser(?User $user): self
     {
         $this->user = $user;
+
         return $this;
     }
+
 
 }

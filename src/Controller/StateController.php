@@ -6,6 +6,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class StateController extends BaseController
 {
+
     /**
      * @Route("/state", name="state")
      */

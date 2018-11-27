@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        <h1>{{ traobject.title }}</h1>
+<section class="row">
+    <article class="col-md-3">
+        <div class="card object-card">
+            <img class="card-img-top" src="{{ asset('uploads/' ~ traobject.picture) }}" alt="{{ traobject.title }}">
+        </div>
+    </article>
+</section>
+    </div>
+
+{% endblock %}

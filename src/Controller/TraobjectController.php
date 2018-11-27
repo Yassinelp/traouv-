@@ -13,12 +13,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class TraobjectController extends BaseController
 {
     /**
-     * @Route("/traobject/{slug}", name="traobject_show")
+     * @Route("/{id}", name="traobject_show")
      */
     public function show(Traobject $traobject)
     {
-        return $this->render('traobject/index.html.twig', [
-            'controller_name' => 'TraobjectController',
+        return $this->render('traobject/show.html.twig', [
+            'traobject' => $traobject,
         ]);
     }
 }

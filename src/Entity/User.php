@@ -3,33 +3,44 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
+ * User
+ *
+ * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_8D93D649E7927C74", columns={"email"})})
  * @ORM\Entity
  */
 class User implements UserInterface
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="firstname", type="string", length=255, nullable=false)
      */
     private $firstname;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="lastname", type="string", length=255, nullable=false)
      */
     private $lastname;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=180, nullable=false)
      */
     private $email;
 
@@ -40,29 +51,60 @@ class User implements UserInterface
     private $plainPassword;
 
     /**
-     * @ORM\Column(type="json")
+     * @var json
+     *
+     * @ORM\Column(name="roles", type="json", nullable=false)
      */
-    private $roles = [];
+    private $roles;
 
     /**
-     * @var string The hashed password
-     * @ORM\Column(type="string")
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=255, nullable=false)
      */
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=10)
+     * @var string
+     *
+     * @ORM\Column(name="phone", type="string", length=10, nullable=false)
      */
     private $phone;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="picture", type="string", length=255, nullable=false)
      */
     private $picture;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(string $firstname): self
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(string $lastname): self
+    {
+        $this->lastname = $lastname;
+
+        return $this;
     }
 
     public function getEmail(): ?string
@@ -75,16 +117,6 @@ class User implements UserInterface
         $this->email = $email;
 
         return $this;
-    }
-
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
-    public function getUsername(): string
-    {
-        return (string) $this->email;
     }
 
     /**
@@ -121,57 +153,28 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @see UserInterface
-     */
-    public function getSalt()
+    public function getPhone(): ?string
     {
-        // not needed when using the "bcrypt" algorithm in security.yaml
+        return $this->phone;
     }
 
-    /**
-     * @return string
-     */
-    public function getFirstname() : ?string
+    public function setPhone(string $phone): self
     {
-        return $this->firstname;
-    }
+        $this->phone = $phone;
 
-    /**
-     * @param string $firstname
-     * @return User
-     */
-    public function setFirstname(string $firstname): self
-    {
-        $this->firstname = $firstname;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getLastname() : ?string
+    public function getPicture(): ?string
     {
-        return $this->lastname;
+        return $this->picture;
     }
 
-    /**
-     * @param string $lastname
-     * @return User
-     */
-    public function setLastname(string $lastname): self
+    public function setPicture(string $picture): self
     {
-        $this->lastname = $lastname;
+        $this->picture = $picture;
+
         return $this;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function eraseCredentials()
-    {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
     }
 
     /**
@@ -191,48 +194,35 @@ class User implements UserInterface
     }
 
     /**
-     * @return mixed
+     * Returns the salt that was originally used to encode the password.
+     *
+     * This can return null if the password was not encoded using a salt.
+     *
+     * @return string|null The salt
      */
-    public function getPhone()
+    public function getSalt()
     {
-        return $this->phone;
+        // TODO: Implement getSalt() method.
     }
 
     /**
-     * @param string $phone
-     * @return User
+     * Returns the username used to authenticate the user.
+     *
+     * @return string The username
      */
-    public function setPhone(string $phone): self
+    public function getUsername()
     {
-        $this->phone = $phone;
-
-        return $this;
+        // TODO: Implement getUsername() method.
     }
 
     /**
-     * @return mixed
+     * Removes sensitive data from the user.
+     *
+     * This is important if, at any given point, sensitive information like
+     * the plain-text password is stored on this object.
      */
-    public function getPicture()
+    public function eraseCredentials()
     {
-        return $this->picture;
+        // TODO: Implement eraseCredentials() method.
     }
-
-    /**
-     * @param string $picture
-     * @return User
-     */
-    public function setPicture(string $picture): self
-    {
-        $this->picture = $picture;
-
-        return $this;
-    }
-
-
-    public function __toString()
-    {
-        return $this->getEmail();
-    }
-
-
 }

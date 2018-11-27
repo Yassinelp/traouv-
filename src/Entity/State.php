@@ -12,6 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class State
 {
+    const FOUND = "Trouvé";
+    const LOST = "Perdu";
+
     /**
      * @var int
      *
@@ -35,58 +38,34 @@ class State
      */
     private $color;
 
-    /**
-     * @return int
-     */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return State
-     */
-    public function setId(int $id): State
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLabel(): string
+    public function getLabel(): ?string
     {
         return $this->label;
     }
 
-    /**
-     * @param string $label
-     * @return State
-     */
-    public function setLabel(string $label): State
+    public function setLabel(string $label): self
     {
         $this->label = $label;
+
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getColor(): string
+    public function getColor(): ?string
     {
         return $this->color;
     }
 
-    /**
-     * @param string $color
-     * @return State
-     */
-    public function setColor(string $color): State
+    public function setColor(string $color): self
     {
         $this->color = $color;
+
         return $this;
     }
+
 
 }

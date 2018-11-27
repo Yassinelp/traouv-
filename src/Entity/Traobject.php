@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Traobject
  *
  * @ORM\Table(name="traobject", indexes={@ORM\Index(name="fk_traobject_category_idx", columns={"category_id"}), @ORM\Index(name="fk_traobject_state1_idx", columns={"state_id"}), @ORM\Index(name="fk_traobject_user1_idx", columns={"user_id"}), @ORM\Index(name="fk_traobject_county1_idx", columns={"county_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\TraobjectRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class Traobject
@@ -96,16 +96,6 @@ class Traobject
     private $category;
 
     /**
-     * @var County
-     *
-     * @ORM\ManyToOne(targetEntity="County")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="county_id", referencedColumnName="id")
-     * })
-     */
-    private $county;
-
-    /**
      * @var State
      *
      * @ORM\ManyToOne(targetEntity="State")
@@ -114,6 +104,16 @@ class Traobject
      * })
      */
     private $state;
+
+    /**
+     * @var County
+     *
+     * @ORM\ManyToOne(targetEntity="County")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="county_id", referencedColumnName="id")
+     * })
+     */
+    private $county;
 
     /**
      * @var User
@@ -125,255 +125,164 @@ class Traobject
      */
     private $user;
 
-    /**
-     * @return int
-     */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return Traobject
-     */
-    public function setId(int $id): Traobject
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * @param string $title
-     * @return Traobject
-     */
-    public function setTitle(string $title): Traobject
+    public function setTitle(string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getPicture(): ?string
     {
         return $this->picture;
     }
 
-    /**
-     * @param string|null $picture
-     * @return Traobject
-     */
-    public function setPicture(?string $picture): Traobject
+    public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
+
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * @param string|null $description
-     * @return Traobject
-     */
-    public function setDescription(?string $description): Traobject
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
+
         return $this;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getEventAt(): \DateTime
+    public function getEventAt(): ?\DateTimeInterface
     {
         return $this->eventAt;
     }
 
-    /**
-     * @param \DateTime $eventAt
-     * @return Traobject
-     */
-    public function setEventAt(\DateTime $eventAt): Traobject
+    public function setEventAt(\DateTimeInterface $eventAt): self
     {
         $this->eventAt = $eventAt;
+
         return $this;
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getDateEnd(): ?\DateTime
+    public function getDateEnd(): ?\DateTimeInterface
     {
         return $this->dateEnd;
     }
 
-    /**
-     * @param \DateTime|null $dateEnd
-     * @return Traobject
-     */
-    public function setDateEnd(?\DateTime $dateEnd): Traobject
+    public function setDateEnd(?\DateTimeInterface $dateEnd): self
     {
         $this->dateEnd = $dateEnd;
+
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getCity(): string
+    public function getCity(): ?string
     {
         return $this->city;
     }
 
-    /**
-     * @param string $city
-     * @return Traobject
-     */
-    public function setCity(string $city): Traobject
+    public function setCity(string $city): self
     {
         $this->city = $city;
+
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getAddress(): ?string
     {
         return $this->address;
     }
 
-    /**
-     * @param string|null $address
-     * @return Traobject
-     */
-    public function setAddress(?string $address): Traobject
+    public function setAddress(?string $address): self
     {
         $this->address = $address;
+
         return $this;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param \DateTime $createdAt
-     * @return Traobject
-     */
-    public function setCreatedAt(\DateTime $createdAt): Traobject
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param \DateTime|null $updatedAt
-     * @return Traobject
-     */
-    public function setUpdatedAt(?\DateTime $updatedAt): Traobject
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
         return $this;
     }
 
-    /**
-     * @return Category
-     */
-    public function getCategory(): Category
+    public function getCategory(): ?Category
     {
         return $this->category;
     }
 
-    /**
-     * @param Category $category
-     * @return Traobject
-     */
-    public function setCategory(Category $category): Traobject
+    public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
         return $this;
     }
 
-    /**
-     * @return County
-     */
-    public function getCounty(): County
-    {
-        return $this->county;
-    }
-
-    /**
-     * @param County $county
-     * @return Traobject
-     */
-    public function setCounty(County $county): Traobject
-    {
-        $this->county = $county;
-        return $this;
-    }
-
-    /**
-     * @return State
-     */
-    public function getState(): State
+    public function getState(): ?State
     {
         return $this->state;
     }
 
-    /**
-     * @param State $state
-     * @return Traobject
-     */
-    public function setState(State $state): Traobject
+    public function setState(?State $state): self
     {
         $this->state = $state;
+
         return $this;
     }
 
-    /**
-     * @return User
-     */
-    public function getUser(): User
+    public function getCounty(): ?County
+    {
+        return $this->county;
+    }
+
+    public function setCounty(?County $county): self
+    {
+        $this->county = $county;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    /**
-     * @param User $user
-     * @return Traobject
-     */
-    public function setUser(User $user): Traobject
+    public function setUser(?User $user): self
     {
         $this->user = $user;
+
         return $this;
     }
 
