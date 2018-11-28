@@ -193,6 +193,12 @@ class User implements UserInterface
         $this->plainPassword = $plainPassword;
     }
 
+
+    public function getFullname(): string
+    {
+        return $this->getFirstname() . " " . $this->getLastname();
+    }
+
     /**
      * Returns the salt that was originally used to encode the password.
      *
@@ -212,7 +218,7 @@ class User implements UserInterface
      */
     public function getUsername()
     {
-        // TODO: Implement getUsername() method.
+        return $this->getFullname();
     }
 
     /**
@@ -225,4 +231,6 @@ class User implements UserInterface
     {
         // TODO: Implement eraseCredentials() method.
     }
+
+
 }

@@ -99,6 +99,20 @@ class TraobjectFixtures extends Fixture implements DependentFixtureInterface
             ->setState($this->getReference("trouvé"));
         $manager->persist($traobject);
 
+        $traobject = new Traobject();
+        $traobject->setTitle("Gourmette")
+            ->setPicture(null)
+            ->setAddress(null)
+            ->setCity("Saint-Brieuc")
+            ->setCounty($this->getReference("county-1"))
+            ->setDescription("Gourmette avec inscription au nom de Romain. Merci de m'envoyer un message avec la date de naissance inscrite au dos pour vous la restituer")
+            ->setEventAt(new \DateTime("2018-11-27"))
+            ->setDateEnd(null)
+            ->setCategory($this->getReference("categorie-autre"))
+            ->setUser($this->getReference("user-1"))
+            ->setState($this->getReference("trouvé"));
+        $manager->persist($traobject);
+
         $manager->flush();
     }
 
