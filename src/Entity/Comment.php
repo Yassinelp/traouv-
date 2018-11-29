@@ -36,9 +36,9 @@ class Comment
     private $createdAt;
 
     /**
-     * @var \Traobject
+     * @var Traobject
      *
-     * @ORM\ManyToOne(targetEntity="Traobject")
+     * @ORM\ManyToOne(targetEntity="Traobject", inversedBy="comments")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="traobject_id", referencedColumnName="id")
      * })
@@ -46,7 +46,7 @@ class Comment
     private $traobject;
 
     /**
-     * @var \User
+     * @var User
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({

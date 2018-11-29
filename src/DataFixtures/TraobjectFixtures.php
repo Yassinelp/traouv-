@@ -27,6 +27,7 @@ class TraobjectFixtures extends Fixture implements DependentFixtureInterface
                 ->setState($this->getReference("perdu"));
 
        $manager->persist($traobject);
+       $this->addReference('traobject-1', $traobject);
 
         $traobject = new Traobject();
         $traobject->setTitle("Portefeuille cuir")

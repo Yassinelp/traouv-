@@ -10,6 +10,9 @@ easy_admin:
               - {property: 'picture ', type: 'image', base_path: '%app.path.uploads_dir%' }
               - {property: 'category.label'}
               - {property: 'state.label'}
+          show:
+            fields:
+              - {property: 'picture ', type: 'image', base_path: '%app.path.uploads_dir%' }
             title: 'Liste des objets'
         Category:
           class: App\Entity\Category
@@ -20,8 +23,15 @@ easy_admin:
         User:
           class: App\Entity\User
           label: 'Utilisateurs'
-          fields:
-            {property: 'picture', type: 'image', base_path: '%app.path.uploads_dir%' }
+          list:
+            fields:
+              - {property: 'fullname'}
+              - {property: 'picture ', type: 'image', base_path: '%app.path.uploads_dir%' }
+              - {property: 'email'}
+              - {property: 'phone'}
+            show:
+              fields:
+              - {property: 'picture ', type: 'image', base_path: '%app.path.uploads_dir%' }
         Comment:
           class: App\Entity\Comment
           label: 'Commentaires'

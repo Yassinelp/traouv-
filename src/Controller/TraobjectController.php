@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\State;
 use App\Entity\Traobject;
 use App\Form\TraobjectType;
@@ -84,12 +85,15 @@ class TraobjectController extends BaseController
     /**
      * @Route("/{id}", name="traobject_show")
      */
+
     public function show(Traobject $traobject)
     {
+
         return $this->render('traobject/show.html.twig', [
             'traobject' => $traobject,
         ]);
     }
+
 
 
 }

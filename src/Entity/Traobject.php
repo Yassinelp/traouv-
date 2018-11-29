@@ -2,7 +2,11 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Traobject
@@ -10,6 +14,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="traobject", indexes={@ORM\Index(name="fk_traobject_category_idx", columns={"category_id"}), @ORM\Index(name="fk_traobject_state1_idx", columns={"state_id"}), @ORM\Index(name="fk_traobject_user1_idx", columns={"user_id"}), @ORM\Index(name="fk_traobject_county1_idx", columns={"county_id"})})
  * @ORM\Entity(repositoryClass="App\Repository\TraobjectRepository")
  * @ORM\HasLifecycleCallbacks()
+ *
+ * @Vich\Uploadable()
  */
 class Traobject
 {
@@ -35,6 +41,13 @@ class Traobject
      * @ORM\Column(name="picture", type="string", length=255, nullable=true)
      */
     private $picture;
+
+
+    /**
+     * @Vich\UploadableField(mapping="traobject_images", fileNameProperty="picture")
+     * @var File
+     */
+    private $pictureFile;
 
     /**
      * @var string|null
@@ -125,6 +138,19 @@ class Traobject
      */
     private $user;
 
+    /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="traobject")
+     */
+    private $comments;
+
+    /**
+     * Traobject constructor.
+     */
+    public function __construct() {
+        $this->comments = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -142,11 +168,19 @@ class Traobject
         return $this;
     }
 
+
+    /**
+     * @return string|null
+     */
     public function getPicture(): ?string
     {
         return $this->picture;
     }
 
+    /**
+     * @param string|null $picture
+     * @return Traobject
+     */
     public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
@@ -300,6 +334,48 @@ class Traobject
     public function preUpdate()
     {
         $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * @return Null|File
+     */
+    public function getPictureFile(): ?File
+    {
+        return $this->pictureFile;
+    }
+
+    /**
+     * @param Null|File $pictureFile
+     * @throws \Exception
+     */
+    public function setPictureFile(File $pictureFile): void
+    {
+        $this->pictureFile = $pictureFile;
+
+        if ($pictureFile){
+            $this->updatedAt = new \DateTime();
+        }
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @param Collection $comments
+     */
+    public function setComments(Collection $comments): void
+    {
+        $this->comments = $comments;
+    }
+
+    public function __toString()
+    {
+        return $this->getTitle();
     }
 
 

@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class UserType extends AbstractType
 {
@@ -24,7 +25,7 @@ class UserType extends AbstractType
             ->add('email')
 //            ->add('roles')
             ->add('phone')
-            ->add('picture', FileType::class)
+            ->add('pictureFile', VichImageType::class)
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'first_options'  => array('label' => 'Password'),

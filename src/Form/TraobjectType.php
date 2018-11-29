@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class TraobjectType extends AbstractType
 {
@@ -24,7 +25,7 @@ class TraobjectType extends AbstractType
 //                "choice_label" => "label"
 //            ])
             ->add('title')
-            ->add('picture', FileType::class)
+            ->add('pictureFile', VichImageType::class)
             ->add('description')
             ->add('eventAt', DateType::class, ['widget' => 'single_text'])
             ->add('city')

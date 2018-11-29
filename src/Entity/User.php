@@ -3,14 +3,18 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * User
  *
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_8D93D649E7927C74", columns={"email"})})
  * @ORM\Entity
+ *
+ * @Vich\Uploadable()
  */
 class User implements UserInterface
 {
@@ -77,6 +81,12 @@ class User implements UserInterface
      * @ORM\Column(name="picture", type="string", length=255, nullable=false)
      */
     private $picture;
+
+    /**
+     * @Vich\UploadableField(mapping="user_images", fileNameProperty="picture")
+     * @var File
+     */
+    private $pictureFile;
 
     public function getId(): ?int
     {
@@ -165,11 +175,18 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getPicture(): ?string
     {
         return $this->picture;
     }
 
+    /**
+     * @param string $picture
+     * @return User
+     */
     public function setPicture(string $picture): self
     {
         $this->picture = $picture;
@@ -198,6 +215,28 @@ class User implements UserInterface
     {
         return $this->getFirstname() . " " . $this->getLastname();
     }
+
+    /**
+     * @return Null|File
+     */
+    public function getPictureFile(): ?File
+    {
+        return $this->pictureFile;
+    }
+
+    /**
+     * @param Null|File $pictureFile
+     * @throws \Exception
+     */
+    public function setPictureFile(File $pictureFile): void
+    {
+        $this->pictureFile = $pictureFile;
+
+        if ($pictureFile){
+            $this->updatedAt = new \DateTime();
+        }
+    }
+
 
     /**
      * Returns the salt that was originally used to encode the password.
@@ -232,5 +271,9 @@ class User implements UserInterface
         // TODO: Implement eraseCredentials() method.
     }
 
+    public function __toString()
+    {
+        return $this->getFullname();
+    }
 
 }
