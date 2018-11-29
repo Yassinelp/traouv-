@@ -25,18 +25,36 @@
         </h5>
         <nav class="my-2 my-md-0 mr-md-3">
             <a class="p-2 text-dark" href="{{ path('homepage') }}">Accueil</a>
-            <a class="p-2 text-dark" href="#">Déposer une annonce</a>
+            {% if app.user %}
+                <a class="p-2 text-dark" href="#">Déposer une annonce</a>
+            {% endif %}
             <a class="p-2 text-dark" href="{{ path('traobject_newlost') }}">Objets perdus</a>
             <a class="p-2 text-dark" href="{{ path('traobject_newfound') }}">Objets trouvés</a>
         </nav>
-        <a class="btn btn-outline-primary" href="{{ path('app_login') }}">
-            <i class="fa fa-sign-in"></i>
-            Se connecter
-        </a>
-        <a class="btn btn-outline-primary" href="{{ path('user_registration') }}">
+        {% if app.user %}
+           <span class="btn btn-outline-info"><i class="fa fa-sign-in "> </i> Bonjour {{ app.user.firstname }} ! </span>
+
+        {% else %}
+            <a class="btn btn-outline-primary" href="{{ path('app_login') }}">
+                <i class="fa fa-sign-in"></i>
+                Se connecter
+            </a>
+            <a class="btn btn-outline-primary" href="{{ path('user_registration') }}">
             <i class="fa fa-user-plus"></i>
             Créer un compte
         </a>
+        {% endif %}
+
+            {% if app.user %}
+                <li style="list-style: none">
+                    <a class="btn btn-outline-primary" href="{{ path('app_logout') }}">
+                        <i class="fa fa-sign-out"></i>
+                        Se déconnecter
+                    </a>
+                </li>
+            {% endif %}
+
+
     </div>
 {% endblock %}
 <main class="main-content">
@@ -57,20 +75,12 @@
                     <small class="d-block mb-3 text-muted">&copy; 2017-2018</small>
                 </div>
                 <div class="col-6 col-md">
-                    <h5>Catégories</h5>
-                    <ul class="list-unstyled text-small">
 
-                        <li><a class="text-muted" href="#"> Nom des catégories</a></li>
+                    {{ render(controller('App\\Controller\\CategoryController::allCategories')) }}
 
-                    </ul>
                 </div>
                 <div class="col-6 col-md">
-                    <h5>Départements</h5>
-                    <ul class="list-unstyled text-small">
-
-                        <li><a class="text-muted" href="#">Côte d'Armor</a></li>
-
-                    </ul>
+                    {{ render(controller('App\\Controller\\CountyController::allCounties')) }}
                 </div>
                 <div class="col-6 col-md">
                     <h5>Notre entreprise</h5>

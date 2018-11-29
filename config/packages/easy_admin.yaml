@@ -1,0 +1,30 @@
+easy_admin:
+    site_name: "Administration"
+    entities:
+        Traobject:
+          class: App\Entity\Traobject
+          label: 'Traobject'
+          list:
+            fields:
+              - {property: 'title'}
+              - {property: 'picture ', type: 'image', base_path: '%app.path.uploads_dir%' }
+              - {property: 'category.label'}
+              - {property: 'state.label'}
+            title: 'Liste des objets'
+        Category:
+          class: App\Entity\Category
+          label: 'Les Catégories'
+        County:
+          class: App\Entity\County
+          label: 'Départements'
+        User:
+          class: App\Entity\User
+          label: 'Utilisateurs'
+          fields:
+            {property: 'picture', type: 'image', base_path: '%app.path.uploads_dir%' }
+        Comment:
+          class: App\Entity\Comment
+          label: 'Commentaires'
+        State:
+          class: App\Entity\State
+          label: 'Statut'

@@ -24,4 +24,6 @@ class DefaultController extends BaseController
             'traobjectsLost' => $traobjectsLost
         ]);
     }
+
+
 }

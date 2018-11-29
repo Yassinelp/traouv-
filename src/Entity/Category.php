@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -42,6 +43,12 @@ class Category
      */
     private $color;
 
+    /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="App\Entity\Traobject", mappedBy="category")
+     */
+    private $traobjects;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -81,6 +88,22 @@ class Category
         $this->color = $color;
 
         return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getTraobjects(): \Doctrine\Common\Collections\Collection
+    {
+        return $this->traobjects;
+    }
+
+    /**
+     * @param Collection $traobjects
+     */
+    public function setTraobjects(Collection $traobjects): void
+    {
+        $this->traobjects = $traobjects;
     }
 
 

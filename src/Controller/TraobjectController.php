@@ -71,6 +71,15 @@ class TraobjectController extends BaseController
         return $this->render('traobject/newfound.html.twig', ['form' => $form->createView()]);
     }
 
+    /**
+     * @Route("/search", name="traobject_search")
+     */
+    public function  search(Traobject $traobject)
+    {
+        return $this->render('traobject/search.html.twig', ['traobject' => $traobject]);
+    }
+
+
 
     /**
      * @Route("/{id}", name="traobject_show")
@@ -81,5 +90,6 @@ class TraobjectController extends BaseController
             'traobject' => $traobject,
         ]);
     }
+
 
 }
