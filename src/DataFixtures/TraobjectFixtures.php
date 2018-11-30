@@ -43,6 +43,7 @@ class TraobjectFixtures extends Fixture implements DependentFixtureInterface
             ->setState($this->getReference("perdu"));
 
         $manager->persist($traobject);
+        $this->addReference('traobject-2', $traobject);
 
         $traobject = new Traobject();
         $traobject->setTitle("Trousseau de clés")
@@ -57,6 +58,7 @@ class TraobjectFixtures extends Fixture implements DependentFixtureInterface
             ->setUser($this->getReference("user-3"))
             ->setState($this->getReference("perdu"));
         $manager->persist($traobject);
+        $this->addReference('traobject-3', $traobject);
 
         $traobject = new Traobject();
         $traobject->setTitle("Poupée blonde")
@@ -71,6 +73,7 @@ class TraobjectFixtures extends Fixture implements DependentFixtureInterface
             ->setUser($this->getReference("user-1"))
             ->setState($this->getReference("trouvé"));
         $manager->persist($traobject);
+        $this->addReference('traobject-4', $traobject);
 
         $traobject = new Traobject();
         $traobject->setTitle("Jeu de carte Pokémon")
@@ -85,6 +88,7 @@ class TraobjectFixtures extends Fixture implements DependentFixtureInterface
             ->setUser($this->getReference("user-2"))
             ->setState($this->getReference("trouvé"));
         $manager->persist($traobject);
+        $this->addReference('traobject-5', $traobject);
 
         $traobject = new Traobject();
         $traobject->setTitle("Gants en cuir")
@@ -99,6 +103,7 @@ class TraobjectFixtures extends Fixture implements DependentFixtureInterface
             ->setUser($this->getReference("user-2"))
             ->setState($this->getReference("trouvé"));
         $manager->persist($traobject);
+        $this->addReference('traobject-6', $traobject);
 
         $traobject = new Traobject();
         $traobject->setTitle("Gourmette")
@@ -113,6 +118,7 @@ class TraobjectFixtures extends Fixture implements DependentFixtureInterface
             ->setUser($this->getReference("user-1"))
             ->setState($this->getReference("trouvé"));
         $manager->persist($traobject);
+        $this->addReference('traobject-7', $traobject);
 
         $manager->flush();
     }

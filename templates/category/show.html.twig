@@ -5,7 +5,8 @@
 {% block body %}
     <section class="row">
         <div class="container">
-            <h1> <u>Catégorie</u> : {{ category.label }}</h1>
+            <h1> <u>Catégorie</u> : <a style="color: white; background-color:{{ category.color }};" href="{{ path('category_show', {'id': category.id}) }}" class="badge"><i class="fa {{ category.icon }}"></i> {{ category.label }}</a>
+            </h1>
             <section class="row">
                 {% for traobject in category.traobjects %}
                     <article class="col-md-3">

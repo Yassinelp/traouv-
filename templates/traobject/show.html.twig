@@ -37,12 +37,10 @@
                     <ul class="object-features">
                         Description du " {{ traobject.title }} "<br>
 
-
                         Objet trouvé à : <br> <a href="#" class="badge badge-info"><i
                                     class="fa fa-map-marker"></i> {{ traobject.city }}</a>
                         le <a href="#" class="badge badge-info"><i
                                     class="fa fa-calendar"></i> {{ traobject.eventAt|date('d/m/Y') }}</a><br>
-
 
                         <i>"{{ traobject.description }}"</i> <br>
 
@@ -52,20 +50,21 @@
                 </div>
             </section>
             <h3>Commentaire(s) : </h3>
-            <div class="card col-md-8">
-
-                {% for comment in traobject.comments %}
-                <ul class="object-features">
-                    <div>{{ comment.content }}</div>
-                    <div class="col-md-2"><img class="card-img-top" src="{{ asset('uploads/' ~ comment.user.picture) }}"
-                                               alt=""></div>
-                    Par <i>{{ comment.user }} {{ comment.user.picture }}</i>
-            </div>
-            </ul>
+            {% for comment in traobject.comments %}
+            <section class="row">
+                <div class="card col-md-8" style="background-color: #bbbbbb">
+                    <ul class="object-features">
+                        <div>{{ comment.content }}</div>
+                        <div class="col-md-2">
+                            <img style="border: #3f3f3f 4px solid; border-radius: 4px"  class="card-img-top" src="{{ asset('uploads/' ~ comment.user.picture) }}"
+                                 alt="{{ comment.user }}">
+                        </div>
+                        <i class="fa fa-commenting"></i>Commentaire de : <i>{{ comment.user }} </i>
+                    </ul>
+                </div>
+            </section>
+                <br>
             {% endfor %}
-
-        </div>
-
         </div>
     </section>
 {% endblock %}

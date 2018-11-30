@@ -13,6 +13,8 @@
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
 </head>
+
+
 <body>
 {% block header %}
     <div class="fixed-top d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom shadow-sm">
@@ -21,7 +23,7 @@
           <i class="fa fa-square fa-stack-2x"></i>
           <i class="fa fa-search fa-stack-1x fa-inverse"></i>
         </span>
-            Traoùvé
+            <a href="{{ path('homepage') }}" style="color: black">Traoùvé</a>
         </h5>
         <nav class="my-2 my-md-0 mr-md-3">
             <a class="p-2 text-dark" href="{{ path('homepage') }}">Accueil</a>
@@ -32,7 +34,8 @@
             <a class="p-2 text-dark" href="{{ path('traobject_newfound') }}">Objets trouvés</a>
         </nav>
         {% if app.user %}
-           <span class="btn btn-outline-info"><i class="fa fa-sign-in "> </i> Bonjour {{ app.user.firstname }} ! </span>
+            <span class="btn btn-outline-info"><i
+                        class="fa fa-sign-in "> </i> Bonjour {{ app.user.firstname }} ! </span>
 
         {% else %}
             <a class="btn btn-outline-primary" href="{{ path('app_login') }}">
@@ -40,19 +43,19 @@
                 Se connecter
             </a>
             <a class="btn btn-outline-primary" href="{{ path('user_registration') }}">
-            <i class="fa fa-user-plus"></i>
-            Créer un compte
-        </a>
+                <i class="fa fa-user-plus"></i>
+                Créer un compte
+            </a>
         {% endif %}
 
-            {% if app.user %}
-                <li style="list-style: none">
-                    <a class="btn btn-outline-primary" href="{{ path('app_logout') }}">
-                        <i class="fa fa-sign-out"></i>
-                        Se déconnecter
-                    </a>
-                </li>
-            {% endif %}
+        {% if app.user %}
+            <li style="list-style: none">
+                <a class="btn btn-outline-primary" href="{{ path('app_logout') }}">
+                    <i class="fa fa-sign-out"></i>
+                    Se déconnecter
+                </a>
+            </li>
+        {% endif %}
 
 
     </div>
@@ -70,7 +73,7 @@
                       <i class="fa fa-square fa-stack-2x"></i>
                       <i class="fa fa-search fa-stack-1x fa-inverse"></i>
                     </span>
-                        Traoùvé
+                        <a href="{{ path('homepage') }}" style="color: black">Traoùvé</a>
                     </h5>
                     <small class="d-block mb-3 text-muted">&copy; 2017-2018</small>
                 </div>
