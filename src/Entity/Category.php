@@ -43,6 +43,8 @@ class Category
      */
     private $color;
 
+
+    # Association des traobjects avec chaque catégorie (DataBase first - OneToMany)
     /**
      * @var Collection
      * @ORM\OneToMany(targetEntity="App\Entity\Traobject", mappedBy="category")

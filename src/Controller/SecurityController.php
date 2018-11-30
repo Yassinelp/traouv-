@@ -18,9 +18,9 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // get the login error if there is one
+        // Récupère l'erreur de connexion s'il y en a une
         $error = $authenticationUtils->getLastAuthenticationError();
-        // last username entered by the user
+        /// Dernier nom d'utilisateur entré par l'utilisateur
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
@@ -31,27 +31,29 @@ class SecurityController extends AbstractController
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
-        // 1) build the form
+        // 1) Construction du formulaire + Création d'un nouvel utilisateur
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
 
-        // 2) handle the submit (will only happen on POST)
+        // 2) Gère la récupération des données (POST)
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // 3) Encode the password (you could also do this via Doctrine listener)
+            // 3) Encodage du mot de passe
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
+            // Rôle automatiquement défini à chaque création de nouveau compte : utilisateur
             $user->setRoles(['ROLE_USER']);
 
-            // 4) save the User!
+            // 4) Enregistrement du nouvel utilisateur
+            // Récupération de l'Entity Manager de Doctrine
             $entityManager = $this->getDoctrine()->getManager();
+            // Ajout du nouvel utlisateur dans l'Entity Manager
             $entityManager->persist($user);
+            // Exécution des requêtes SQL
             $entityManager->flush();
 
-            // ... do any other work - like sending them an email, etc
-            // maybe set a "flash" success message for the user
-
+            // Redirection vers la page de connection une fois le nouveau compte créé
             return $this->redirectToRoute('app_login');
         }
 

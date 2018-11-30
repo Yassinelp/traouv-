@@ -35,6 +35,8 @@ class Comment
      */
     private $createdAt;
 
+
+    # Association des commentaires à chaque traobject (DataBase first - ManyToOne)
     /**
      * @var Traobject
      *
@@ -45,6 +47,8 @@ class Comment
      */
     private $traobject;
 
+
+    # Association des commentaires à chaque utilisateur (DataBase first - ManyToOne)
     /**
      * @var User
      *

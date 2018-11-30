@@ -98,6 +98,8 @@ class Traobject
      */
     private $updatedAt;
 
+
+    # Association des traobjects à chaque Catégorie : Database first : ManyToOne
     /**
      * @var Category
      *
@@ -108,6 +110,7 @@ class Traobject
      */
     private $category;
 
+    # Association des traobjects à chaque Statut (perdu ou trouvé) : Database first : ManyToOne
     /**
      * @var State
      *
@@ -118,6 +121,7 @@ class Traobject
      */
     private $state;
 
+    # Association des traobjects à chaque Département : Database first : ManyToOne
     /**
      * @var County
      *
@@ -128,6 +132,7 @@ class Traobject
      */
     private $county;
 
+    # Association des traobjects à chaque utilisateur : Database first : ManyToOne
     /**
      * @var User
      *
@@ -138,6 +143,7 @@ class Traobject
      */
     private $user;
 
+    # Association des Commentaires à chaque traobject : Database first : OneToMany
     /**
      * @var Collection
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="traobject")

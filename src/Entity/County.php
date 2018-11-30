@@ -37,6 +37,7 @@ class County
      */
     private $zipcode;
 
+    # Association des traobjects à chaque Catégorie : Database first : OneToMany
     /**
      * @var Collection
      * @ORM\OneToMany(targetEntity="App\Entity\Traobject", mappedBy="county")

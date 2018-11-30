@@ -35,8 +35,9 @@ class Message
      */
     private $createdAt;
 
+
     /**
-     * @var \User
+     * @var User
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
@@ -46,7 +47,7 @@ class Message
     private $userForm;
 
     /**
-     * @var \User
+     * @var User
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({

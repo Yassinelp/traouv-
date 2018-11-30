@@ -49,6 +49,7 @@
         {% endif %}
 
         {% if app.user %}
+            <span class="fa-stack fa-lg text-primary"></span>
             <li style="list-style: none">
                 <a class="btn btn-outline-primary" href="{{ path('app_logout') }}">
                     <i class="fa fa-sign-out"></i>
@@ -56,7 +57,6 @@
                 </a>
             </li>
         {% endif %}
-
 
     </div>
 {% endblock %}

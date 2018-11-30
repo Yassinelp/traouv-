@@ -27,6 +27,7 @@ class TraobjectController extends BaseController
     {
         $stateLost = $this->getDoctrine()->getRepository(State::class)->findOneBy(["label" => State::LOST]);
 
+        //Création d'un nouveau Traobject
         $traobject = new Traobject();
         $traobject->setState($stateLost);
 
@@ -35,8 +36,11 @@ class TraobjectController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
+            // Récupération de l'Entity Manager dans Doctrine
             $em = $this->getDoctrine()->getManager();
+            // Ajout de l'objet dans l'Entity Manager
             $em->persist($traobject);
+            //Exécution de la requête SQL
             $em->flush();
 
             return $this->redirectToRoute('homepage');
@@ -62,8 +66,11 @@ class TraobjectController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
+            // Récupération de l'Entity Manager dans Doctrine
             $em = $this->getDoctrine()->getManager();
+            // Ajout de l'objet dans l'Entity Manager
             $em->persist($traobject);
+            //Exécution de la requête SQL
             $em->flush();
 
             return $this->redirectToRoute('homepage');
@@ -80,8 +87,6 @@ class TraobjectController extends BaseController
         return $this->render('traobject/search.html.twig', ['traobject' => $traobject]);
     }
 
-
-
     /**
      * @Route("/{id}", name="traobject_show")
      */
@@ -93,7 +98,5 @@ class TraobjectController extends BaseController
             'traobject' => $traobject,
         ]);
     }
-
-
 
 }
